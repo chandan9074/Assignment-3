@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Homepage : React.FunctionComponent = () =>{
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [gender, setGender] = useState("");
+    const [name, setName] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [gender, setGender] = useState<string>("");
     const navigate = useNavigate();
 
     type userDataT = {
@@ -13,7 +13,7 @@ const Homepage : React.FunctionComponent = () =>{
         genderdt: string
     }
 
-    const handleChange = (e:any) =>{
+    const handleChange : React.ChangeEventHandler<HTMLInputElement> = (e) =>{
         if (e.target.name === "name"){
             setName(e.target.value);
         }
@@ -25,7 +25,7 @@ const Homepage : React.FunctionComponent = () =>{
         }
     }
 
-    const handleSubmit = (e:any) =>{
+    const handleSubmit = (e : React.FormEvent) =>{
         e.preventDefault();
         const data : userDataT = {
             namedt : name,

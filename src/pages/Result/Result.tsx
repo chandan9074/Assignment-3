@@ -2,11 +2,14 @@ import * as React from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import { Link } from 'react-router-dom';
 import { QuiestionData } from '../../data/data';
+import { useNavigate } from 'react-router-dom';
 
 const Result : React.FunctionComponent = () =>{
     
-    const [dataArray , setDataarray] = React.useState<any>([])
-    const [count, setCount] = React.useState<any>([])
+    const [dataArray , setDataarray] = React.useState<Array<string | null>>([]);
+    const [count, setCount] = React.useState<Array<string | null>>([]);
+
+    // const navigate = useNavigate();
 
     React.useEffect(()=>{
         let questiondt0 = localStorage.getItem("question0");
@@ -16,54 +19,62 @@ const Result : React.FunctionComponent = () =>{
         let questiondt4 = localStorage.getItem("question4");
 
         if(questiondt0 === QuiestionData[0].answer){
-            setCount((prevState:any) => [...prevState, questiondt0])
-            setDataarray((prevState:any) => [...prevState, questiondt0])
+            setCount((prevState : Array<string | null>) => [...prevState, questiondt0])
+            setDataarray((prevState: Array<string | null>) => [...prevState, questiondt0])
         }
 
         else{
-            setDataarray((prevState:any) => [...prevState, "wrong"]);
+            setDataarray((prevState:Array<string | null>) => [...prevState, "wrong"]);
         }
 
         if(questiondt1 === QuiestionData[1].answer){
             // setCount(count+1);
-            setCount((prevState:any) => [...prevState, questiondt1])
-            setDataarray((prevState:any) => [...prevState, questiondt1])
+            setCount((prevState:Array<string | null>) => [...prevState, questiondt1])
+            setDataarray((prevState:Array<string | null>) => [...prevState, questiondt1])
         }
 
         else{
-            setDataarray((prevState:any) => [...prevState, "wrong"]);
+            setDataarray((prevState:Array<string | null>) => [...prevState, "wrong"]);
         }
 
         if(questiondt2 === QuiestionData[2].answer){
             // setCount(count+1);
-            setCount((prevState:any) => [...prevState, questiondt2])
-            setDataarray((prevState:any) => [...prevState, questiondt1])
+            setCount((prevState:Array<string | null>) => [...prevState, questiondt2])
+            setDataarray((prevState:Array<string | null>) => [...prevState, questiondt1])
         }
 
         else{
-            setDataarray((prevState:any) => [...prevState, "wrong"]);
+            setDataarray((prevState:Array<string | null>) => [...prevState, "wrong"]);
         }
 
         if(questiondt3 === QuiestionData[3].answer){
             // setCount(count+1);
-            setCount((prevState:any) => [...prevState, questiondt3])
-            setDataarray((prevState:any) => [...prevState, questiondt3])
+            setCount((prevState:Array<string | null>) => [...prevState, questiondt3])
+            setDataarray((prevState:Array<string | null>) => [...prevState, questiondt3])
         }
 
         else{
-            setDataarray((prevState:any) => [...prevState, "wrong"]);
+            setDataarray((prevState:Array<string | null>) => [...prevState, "wrong"]);
         }
 
         if(questiondt4 === QuiestionData[4].answer){
             // setCount(count+1);
-            setCount((prevState:any) => [...prevState, questiondt4])
-            setDataarray((prevState:any) => [...prevState, questiondt4])
+            setCount((prevState:Array<string | null>) => [...prevState, questiondt4])
+            setDataarray((prevState:Array<string | null>) => [...prevState, questiondt4])
         }
 
         else{
-            setDataarray((prevState:any) => [...prevState, "wrong"]);
+            setDataarray((prevState:Array<string | null>) => [...prevState, "wrong"]);
         }
     }, [])
+
+    const handleHome :React.MouseEventHandler = () => {
+        localStorage.setItem("question0", "");
+        localStorage.setItem("question1", "");
+        localStorage.setItem("question2", "");
+        localStorage.setItem("question3", "");
+        localStorage.setItem("question4", "");
+    }
     return (
         <div className='flex'>
             <div className='w-1/2 '>
@@ -84,7 +95,7 @@ const Result : React.FunctionComponent = () =>{
                     </div>
                 ))}
                 <div className='mt-10'>
-                    <Link to="/" className='bg-red-100 py-1 px-5 border-2 border-red-500 rounded-md cursor-pointer ml-10 '>Go to home</Link>
+                    <Link to="/" onClick={handleHome} className='bg-red-100 py-1 px-5 border-2 border-red-500 rounded-md cursor-pointer ml-10 '>Go to home</Link>
                 </div>
             </div>
             <div className='w-1/2 p-5 mt-10 ml-10'>
